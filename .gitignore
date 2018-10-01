@@ -21,6 +21,9 @@ __pycache__/
 *.app
 
 # Distribution / packaging
+_build/
+_static/
+_templates/
 .Python
 env/
 build/

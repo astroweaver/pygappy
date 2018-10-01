@@ -26,9 +26,9 @@ import matplotlib.pyplot as plt
 # ------------------------------------------------------------------------------
 # Main Program
 # ------------------------------------------------------------------------------
-def pca_plot(data, wave, pcs, espec, mean=None, norm=1.0, nshow=3, ax=None):
+def model(data, wave, pcs, espec, mean=None, norm=1.0, nshow=3, ax=None):
     """
-    Plots the output of a PCA analysis.
+    Plots the output model fit of a PCA analysis.
 
     Required keyword arguments:
     data -- the input data array
