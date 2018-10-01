@@ -79,7 +79,7 @@ def model(data, wave, pcs, espec, mean=None, norm=1.0, nshow=3, ax=None):
 
     # plot stuff
     ax.plot(wave, data, c='k', alpha=1)
-    ax.plot(wave, precon, c='r', ls='dashed', alpha=1)
+    ax.plot(wave, precon, c='r', ls='solid', alpha=1)
 
     colors = ('darkred', 'green', 'royalblue')[:nshow]
     for i in np.arange(nshow):

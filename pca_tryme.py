@@ -79,7 +79,6 @@ for i, spec in enumerate(test_spec):
     if noise:
         data = data + np.random.normal(0, 0.02, 440)
     data = appnorm * (data / np.mean(data))
-    ax2.scatter(test_pcs[i, 0], -test_pcs[i, 1], color='k')
 
     if verbose:
         print(f'\n{i+1}/{Ntry} -----------------------------------')
@@ -100,7 +99,6 @@ for i, spec in enumerate(test_spec):
     # Plot them
     pcaplot.model(data, ewave, gpcs, espec, ax=ax1[0], mean=emean,
                    nshow=Nshow)
-    ax2.scatter(gpcs[0], -gpcs[1], color='darkred')
 
     # Get NormGappyPCA results
     npcs, norm, cov = pca.pca_normgappy(
@@ -133,9 +131,6 @@ for i, spec in enumerate(test_spec):
         input('\nNext? ')
         ax1[0].clear()
         ax1[1].clear()
-        ax2.scatter(gpcs[0], -gpcs[1], color='gray', alpha = 0.5)
-        ax2.scatter(npcs[0], -npcs[1], color='gray', alpha = 0.5)
-        ax2.scatter(test_pcs[i, 0], -test_pcs[i, 1], color='gray')
     else:
         print('\nEnd.')
 
