@@ -8,9 +8,10 @@ About
 
 Written by John Weaver (St Andrews/Copenhagen 2018)
 
-Based on the original Principal Component Analysis projection routine by
-Vivienne Wild, including fitting around bad values (gappy), and unknown
-normalization factor (norm-gappy).
+Based on the original Principal Component Analysis (PCA) projection routine
+by Vivienne Wild, including fitting around bad values (gappy), and unknown
+normalization factor (norm-gappy). For information about gappy PCA, please
+refer to Wild et al. 2007.
 
 You can test the installation and/or try-out the software by running the
 "pca_tryme.py" script.
