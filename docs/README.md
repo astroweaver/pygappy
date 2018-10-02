@@ -16,8 +16,8 @@ refer to Wild et al. 2007.
 You can test the installation and/or try-out the software by running the
 "pca_tryme.py" script.
 
-For more information and full documentation, please visit:
-https://pygappy.readthedocs.io/en/latest/
+Please refer to Wild et al. (2007) when using this package:
+Wild, V., Kauffmann, G., Heckman, T. et al. (2007, MNRAS 381, 543–572)
 
 
 References
@@ -54,7 +54,6 @@ Project Organization
     ├── AUTHORS.md
     ├── LICENSE
     ├── README.md
-    ├── requirements.txt
     ├── config
     ├── data
     │   ├── pcavo_espec_25.sav
