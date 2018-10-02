@@ -23,12 +23,13 @@ None
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+from matplotlib.path import Path
 
 # ------------------------------------------------------------------------------
 # Main Program
 # ------------------------------------------------------------------------------
 def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
-          nshow=3, windows=False, show_labels=True, ax=None):
+          nshow=3, windows=False, show_labels=True, ax=None, normalize=False):
     """
     Plots the output model fit of a PCA analysis.
 
@@ -58,6 +59,9 @@ def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
     show_labels: bool, optional
         Turns on/off default x/y labels.
         Default is 'True'.
+    normalize: bool, optional
+        Turns on/off scaling normalization using norm.
+        Default is 'False'.
     ax : :obj:axes, optional
         Existing ax object to draw on.
         Default is 'None'
@@ -82,6 +86,11 @@ def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
     # setup figure
     if ax is None:
         fig, ax = plt.subplots(figsize=(10, 4))
+
+    if normalize:
+        data = data / norm
+        precon = precon / norm
+        yp = yp / norm
 
     # plot stuff
     ax.plot(wave, data, c='k', alpha=1)
@@ -109,7 +118,7 @@ def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
             error_mask = (error==0.)
             baseline = ylims[0] * np.ones(len(error_mask))
             topfill = baseline + ylims[1] * error_mask
-            ax.fill_between(wave, baseline - 1, topfill, color='grey',
+            ax.fill_between(wave, baseline - 1, topfill, color='lightgrey',
                 alpha=0.5, zorder=-1, step='post')
 
     ax.set_ylim(ylims)

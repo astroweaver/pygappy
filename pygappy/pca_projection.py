@@ -459,6 +459,7 @@ def normgappy(data, error, espec, mean, cov=False, \
 def mc_errors(data, error, espec, emean, Ntrials=100, verbose=False):
     """
     Performs Monte-Carlo error estimation assuming a normal distribution.
+    The formal 1-sigma errors from the (norm)gappy cov matrix should match.
 
     Parameters
     ----------
