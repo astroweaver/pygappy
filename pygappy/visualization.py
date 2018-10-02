@@ -123,9 +123,10 @@ def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
     else:
         return ax
 
-def PlotPlane(logmass=1., ax=None, monochromatic=False):
+
+def pc_plane(logmass=1., ax=None, monochromatic=False):
     """
-    Returns an ax object with pca plane patches.
+    Returns an ax object with PC1/2 plane patches.
 
     Parameters
     ----------
