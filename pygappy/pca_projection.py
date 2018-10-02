@@ -60,7 +60,8 @@ def eigenbasis(verbose=False):
 
     """
     dir_pca = os.path.dirname(__file__).split('/')[:-1]
-    path_pca = os.path.join('/'.join(dir_pca), 'data/pcavo_espec_25.sav')
+    fname_pca = "data/pcavo_espec_25.sav"
+    path_pca = os.path.join('/'.join(dir_pca), fname_pca)
     pcavo = sciio.readsav(path_pca)
 
     if verbose:
@@ -77,7 +78,7 @@ def eigenbasis(verbose=False):
     return wave, spec, mean, var
 
 
-def pca_gappy(data, error, espec, mean, cov=None, \
+def gappy(data, error, espec, mean, cov=None, \
                 reconstruct=False, verbose=False):
     """
     Performs robust PCA projection.
@@ -123,7 +124,7 @@ def pca_gappy(data, error, espec, mean, cov=None, \
         nrecon = tmp[0]
     else:
         nrecon = 1
-    nbin = np.shape(espec)[1]  # number of data points
+    nbin = np.shape(espec)[-1]  # number of data points
     tmp = np.shape(data)  # number of observations to project
     if np.size(tmp) == 2:
         ngal = tmp[0]
@@ -131,12 +132,12 @@ def pca_gappy(data, error, espec, mean, cov=None, \
         ngal = 1
 
     # Dimension mismatch check
-    if np.shape(data)[0] != nbin:
+    if np.shape(data)[-1] != nbin:
         print(
             '[pca_gappy] ERROR: "data" must have the same dimension as eigenvectors'
         )
         return None
-    if np.shape(error)[0] != nbin:
+    if np.shape(error)[-1] != nbin:
         print(
             '[pca_gappy] ERROR: "error" must have the same dimension as eigenvectors'
         )
@@ -183,7 +184,7 @@ def pca_gappy(data, error, espec, mean, cov=None, \
             continue
 
         # Subtract mean from data
-        data = data[j, :] - mean
+        data_j = data[j, :] - mean
 
         # Calculate the weighted eigenvectors, multiplied by the eigenvectors (eq. 4-5 [1])
         if nrecon > 1:
@@ -191,7 +192,7 @@ def pca_gappy(data, error, espec, mean, cov=None, \
             M = np.dot((espec * weight), espec.T)
 
             # Calculate the weighted data array, multiplied by the eigenvectors (eq. 4-5 [1])
-            F = np.dot((data * weight), espec.T)
+            F = np.dot((data_j * weight), espec.T)
 
             # Solve for Principle Component Amplitudes (eq. 5 [1])
             try:
@@ -212,7 +213,7 @@ def pca_gappy(data, error, espec, mean, cov=None, \
 
         else:  # if only one eigenvector
             M = np.sum(weight * espec * espec)
-            F = np.sum(weight * data * espec)
+            F = np.sum(weight * data_j * espec)
             pcs[j, 0] = F / M
             if cov is True:
                 ccov[j, 0, 0] = np.sum((1. / weight) * espec * espec)
@@ -254,7 +255,7 @@ def pca_gappy(data, error, espec, mean, cov=None, \
         return pcs
 
 
-def pca_normgappy(data, error, espec, mean, cov=False, \
+def normgappy(data, error, espec, mean, cov=False, \
                 reconstruct=False, verbose=False):
     """
     Performs robust PCA projection, including normalization estimation.
@@ -302,7 +303,7 @@ def pca_normgappy(data, error, espec, mean, cov=False, \
         nrecon = tmp[0]
     else:
         nrecon = 1
-    nbin = np.shape(espec)[1]  # number of data points
+    nbin = np.shape(espec)[-1]  # number of data points
     tmp = np.shape(data)  # number of observations to project
     if np.size(tmp) == 2:
         ngal = tmp[0]
@@ -310,12 +311,12 @@ def pca_normgappy(data, error, espec, mean, cov=False, \
         ngal = 1
 
     # Dimension mismatch check
-    if np.shape(data)[0] != nbin:
+    if np.shape(data)[-1] != nbin:
         print(
             '[pca_normgappy] ERROR: "data" must have the same dimension as eigenvectors'
         )
         return None
-    if np.shape(error)[0] != nbin:
+    if np.shape(error)[-1] != nbin:
         print(
             '[pca_normgappy] ERROR: "error" must have the same dimension as eigenvectors'
         )
@@ -454,3 +455,38 @@ def pca_normgappy(data, error, espec, mean, cov=False, \
         return pcs, norm, ccov
     else:
         return pcs, norm
+
+def mc_errors(data, error, espec, emean, Ntrials=100, verbose=False):
+    """
+    Performs Monte-Carlo error estimation assuming a normal distribution.
+
+    Parameters
+    ----------
+    data : ndarray
+        1D spectrum or 2D specta with 'float' type.
+    error : ndarray
+        1D or 2D corresponding 1-sigma error array. Zeros indicate masked data.
+    espec : ndarray
+        2D array of eigenspectra, possibly truncated in dimension.
+    mean : ndarray
+        1D mean spectrum of the eigenspectra.
+    Ntrials: int, optional
+        Number of trials to perform
+        Default is 100.
+    verbose : bool, optional
+        Enable for status and debug messages.
+        Default is ''False''
+
+    Returns
+    -------
+    pc_errors : ndrray
+        1D array of Principal Component errors with 'float' type.
+    """
+
+    mcdata = np.random.normal(data, error, size=(Ntrials, len(data)))
+    mcerror = error[None,:].repeat(Ntrials, 0)
+    mcpcs = gappy(
+        mcdata, mcerror, espec, emean, cov=False, verbose=verbose)
+    pc_errors = np.std(mcpcs, 0)
+
+    return pc_errors

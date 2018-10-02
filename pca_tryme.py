@@ -44,6 +44,13 @@ appnorm = 1.
 # PCs to be shown
 Nshow = 0
 
+# Display error windows
+windows = True
+windowsize = 10 # in pixels
+
+# Number of gaps
+Ngappy = 10
+
 # Seed
 np.random.seed(0)
 
@@ -63,6 +70,12 @@ test_spec = test_pcs @ espec
 
 # Generate error array
 error = np.ones(440)
+for i in np.random.randint(0, 440, Ngappy):
+    start = i
+    end = i + windowsize
+    if end >= len(error):
+        end = len(error) - 1
+    error[start: end] = 0.
 
 # Create figure
 fig1, ax1 = plt.subplots(ncols=1, nrows=2)
@@ -86,7 +99,7 @@ for i, spec in enumerate(test_spec):
         print(f'    first 3 PCs: {x:2.1f} {y:2.1f} {z:2.1f}')
 
     # Get GappyPCA results
-    gpcs, cov = pca.pca_gappy(
+    gpcs, cov = pca.gappy(
         data, error, espec, emean, cov=True, verbose=verbose)
 
     # Check them
@@ -97,11 +110,11 @@ for i, spec in enumerate(test_spec):
         )
 
     # Plot them
-    pcaplot.model(data, ewave, gpcs, espec, ax=ax1[0], mean=emean,
-                   nshow=Nshow)
+    pcaplot.model(data, ewave, gpcs, espec, ax=ax1[0], error=error, mean=emean,
+                   nshow=Nshow, windows=windows)
 
     # Get NormGappyPCA results
-    npcs, norm, cov = pca.pca_normgappy(
+    npcs, norm, cov = pca.normgappy(
         data, error, espec, emean, cov=True, verbose=verbose)
 
     # Check them
@@ -112,8 +125,8 @@ for i, spec in enumerate(test_spec):
         )
 
     # Plot them
-    pcaplot.model(data, ewave, npcs, espec, ax=ax1[1], mean=emean,
-                   norm=norm, nshow=Nshow)
+    pcaplot.model(data, ewave, npcs, espec, ax=ax1[1], error=error, mean=emean,
+                   norm=norm, nshow=Nshow, windows=windows)
 
     # ID the axes
     ax1[0].text(
