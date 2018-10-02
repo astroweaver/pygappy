@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PCA Projection &mdash; pygappy  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Visualization" href="visualization.html" />
+    <link rel="prev" title="pygappy" href="introduction.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pygappy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">pygappy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PCA Projection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#authors">Authors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues">Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pygappy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>PCA Projection</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pca_projection.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pygappy.pca_projection">
+<span id="pca-projection"></span><h1>PCA Projection<a class="headerlink" href="#module-pygappy.pca_projection" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<p>John Weaver &lt;<a class="reference external" href="mailto:john&#46;weaver&#46;astro&#37;&#52;&#48;gmail&#46;com">john<span>&#46;</span>weaver<span>&#46;</span>astro<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+</div>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
+<p>Robust Principal Component Analysis projection, and tools</p>
+<p>Based on IDL implementation by Vivienne Wild</p>
+<dl class="docutils">
+<dt>References:</dt>
+<dd>[1] Connolly &amp; Szalay (1999, AJ, 117, 2052)
+<a class="reference external" href="http://www.journals.uchicago.edu/AJ/journal/issues/v117n5/980466/980466.html">http://www.journals.uchicago.edu/AJ/journal/issues/v117n5/980466/980466.html</a>
+[2] Lemson, “Normalized gappy PCA projection”</dd>
+</dl>
+</div>
+<div class="section" id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<p>None</p>
+<dl class="function">
+<dt id="pygappy.pca_projection.eigenbasis">
+<code class="descclassname">pygappy.pca_projection.</code><code class="descname">eigenbasis</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pygappy.pca_projection.eigenbasis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns wavelengths, eigenspectra, mean spectrum, and variance
+for Wild+07 PCA eigensystem.</p>
+<dl class="docutils">
+<dt>verbose <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd>Enable for status and debug messages.
+Default is ‘’False’‘.</dd>
+</dl>
+<dl class="docutils">
+<dt>wave <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>Wavelength array of ‘float’ type.</dd>
+<dt>spec <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>2D array of eiegenspectra.</dd>
+<dt>mean <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>Mean spectrum array.</dd>
+<dt>var <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>Variance array corresponding to the mean spectrum.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pygappy.pca_projection.gappy">
+<code class="descclassname">pygappy.pca_projection.</code><code class="descname">gappy</code><span class="sig-paren">(</span><em>data</em>, <em>error</em>, <em>espec</em>, <em>mean</em>, <em>cov=None</em>, <em>reconstruct=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pygappy.pca_projection.gappy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs robust PCA projection.</p>
+<dl class="docutils">
+<dt>data <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D spectrum or 2D specta with ‘float’ type.</dd>
+<dt>error <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D or 2D corresponding 1-sigma error array. Zeros indicate masked data.</dd>
+<dt>espec <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>2D array of eigenspectra, possibly truncated in dimension.</dd>
+<dt>mean <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D mean spectrum of the eigenspectra.</dd>
+<dt>cov: bool, optional</dt>
+<dd>Return covariance matrix.
+Default is ‘’False’‘.</dd>
+<dt>reconstruct <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd>Fill in missing values with PCA estimation.
+Default is ‘’False’‘.</dd>
+<dt>verbose <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd>Enable for status and debug messages.
+Default is ‘’False’‘</dd>
+</dl>
+<dl class="docutils">
+<dt>pcs <span class="classifier-delimiter">:</span> <span class="classifier">ndrray</span></dt>
+<dd>1D or 2D array of Principal Components with ‘float’ type.</dd>
+<dt>data <span class="classifier-delimiter">:</span> <span class="classifier">ndrray</span></dt>
+<dd>If reconstruct enabled, 1D or 2D reconstructed spectra.</dd>
+<dt>ccov <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>If cov enabled, 2D or 3D covariance matrices.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pygappy.pca_projection.mc_errors">
+<code class="descclassname">pygappy.pca_projection.</code><code class="descname">mc_errors</code><span class="sig-paren">(</span><em>data</em>, <em>error</em>, <em>espec</em>, <em>emean</em>, <em>Ntrials=100</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pygappy.pca_projection.mc_errors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs Monte-Carlo error estimation assuming a normal distribution.
+The formal 1-sigma errors from the (norm)gappy cov matrix should match.</p>
+<dl class="docutils">
+<dt>data <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D spectrum or 2D specta with ‘float’ type.</dd>
+<dt>error <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D or 2D corresponding 1-sigma error array. Zeros indicate masked data.</dd>
+<dt>espec <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>2D array of eigenspectra, possibly truncated in dimension.</dd>
+<dt>mean <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D mean spectrum of the eigenspectra.</dd>
+<dt>Ntrials: int, optional</dt>
+<dd>Number of trials to perform
+Default is 100.</dd>
+<dt>verbose <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd>Enable for status and debug messages.
+Default is ‘’False’‘</dd>
+</dl>
+<dl class="docutils">
+<dt>pc_errors <span class="classifier-delimiter">:</span> <span class="classifier">ndrray</span></dt>
+<dd>1D array of Principal Component errors with ‘float’ type.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pygappy.pca_projection.normgappy">
+<code class="descclassname">pygappy.pca_projection.</code><code class="descname">normgappy</code><span class="sig-paren">(</span><em>data</em>, <em>error</em>, <em>espec</em>, <em>mean</em>, <em>cov=False</em>, <em>reconstruct=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pygappy.pca_projection.normgappy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs robust PCA projection, including normalization estimation.</p>
+<dl class="docutils">
+<dt>data <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D spectrum or 2D specta with ‘float’ type.</dd>
+<dt>error <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D or 2D corresponding 1-sigma error array. Zeros indicate masked data.</dd>
+<dt>espec <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>2D array of eigenspectra, possibly truncated in dimension.</dd>
+<dt>mean <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>1D mean spectrum of the eigenspectra.</dd>
+<dt>cov: bool, optional</dt>
+<dd>Return covariance matrix.
+Default is ‘’False’‘.</dd>
+<dt>reconstruct <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd>Fill in missing values with PCA estimation.
+Default is ‘’False’‘.</dd>
+<dt>verbose <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
+<dd>Enable for status and debug messages.
+Default is ‘’False’‘</dd>
+</dl>
+<dl class="docutils">
+<dt>pcs <span class="classifier-delimiter">:</span> <span class="classifier">ndrray</span></dt>
+<dd>1D or 2D array of Principal Components with ‘float’ type.</dd>
+<dt>norm: float or ndarray</dt>
+<dd>Normalization estimates.</dd>
+<dt>data <span class="classifier-delimiter">:</span> <span class="classifier">ndrray</span></dt>
+<dd>If reconstruct enabled, 1D or 2D reconstructed spectra.</dd>
+<dt>ccov <span class="classifier-delimiter">:</span> <span class="classifier">ndarray</span></dt>
+<dd>If cov enabled, 2D or 3D covariance matrices.</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="visualization.html" class="btn btn-neutral float-right" title="Visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral" title="pygappy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, John Weaver.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

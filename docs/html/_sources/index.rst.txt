@@ -1,11 +1,9 @@
 Welcome to pygappy's documentation!
 ===================================
 
-.. automodule:: pygappy.pca_projection
-    :members:
-
-.. automodule:: pygappy.visualization
-    :members:
-
 .. toctree::
    :maxdepth: 2
+
+   introduction
+   pca_projection
+   visualization
