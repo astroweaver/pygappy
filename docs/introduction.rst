@@ -16,6 +16,9 @@ refer to Wild et al. 2007.
 You can test the installation and/or try-out the software by running the
 "pca_tryme.py" script.
 
+Please refer to Wild et al. (2007) when using this package:
+Wild, V., Kauffmann, G., Heckman, T. et al. (2007, MNRAS 381, 543–572)
+
 
 References
 ----------
