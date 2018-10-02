@@ -16,6 +16,9 @@ refer to Wild et al. 2007.
 You can test the installation and/or try-out the software by running the
 "pca_tryme.py" script.
 
+For more information and full documentation, please visit:
+https://pygappy.readthedocs.io/en/latest/
+
 
 References
 ----------
