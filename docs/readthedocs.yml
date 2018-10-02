@@ -6,5 +6,3 @@ build:
 python:
   version: 3.6
   setup_py_install: false
-
-requirements_file: docs/requirements.txt
