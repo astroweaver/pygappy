@@ -29,7 +29,7 @@ from matplotlib.path import Path
 # Main Program
 # ------------------------------------------------------------------------------
 def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
-          nshow=3, windows=False, show_labels=True, ax=None, normalize=False):
+          nshow=3, show_labels=True, ax=None, normalize=False):
     """
     Plots the output model fit of a PCA analysis.
 
@@ -53,9 +53,6 @@ def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
     nshow : float, optional
         Number of eigenspectra to plot.
         Default is '3'.
-    windows : bool, optional
-        Turns on/off windows indicating masked regions.
-        Default is 'False'.
     show_labels: bool, optional
         Turns on/off default x/y labels.
         Default is 'True'.
@@ -109,19 +106,6 @@ def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
             transform=ax.transAxes,
             horizontalalignment='right')
 
-    ylims = ax.get_ylim()
-
-    if windows:
-        if error is None:
-            print('[visualization] ERROR: Cannot construct windows because error array not given.')
-        else:
-            error_mask = (error==0.)
-            baseline = ylims[0] * np.ones(len(error_mask))
-            topfill = baseline + ylims[1] * error_mask
-            ax.fill_between(wave, baseline - 1, topfill, color='lightgrey',
-                alpha=0.5, zorder=-1, step='post')
-
-    ax.set_ylim(ylims)
     ax.set_xlim([wave.min(), wave.max()])
     if show_labels:
         ax.set_xlabel('Wavelength ($\AA$)', fontsize=15)
