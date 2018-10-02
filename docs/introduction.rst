@@ -59,7 +59,7 @@ Project Organization
     │   ├── pcavo_espec_25.sav
     ├── docs
     ├── pca_tryme.py
-    └── src
-        ├── __init__.py
-        ├── pca_projection.py
-        ├── visualisation.py
+    ├── src
+    │   ├── __init__.py
+    │   ├── pca_projection.py
+    │   ├── visualisation.py
