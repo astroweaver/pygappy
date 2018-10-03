@@ -95,11 +95,11 @@ def model(data, wave, pcs, espec, error=None, mean=None, norm=1.0,
     ax.plot(wave, data, c='k', alpha=1)
     ax.plot(wave, precon, c='r', ls='solid', alpha=1)
 
-    colors = ('darkred', 'green', 'royalblue')[:nshow]
-    for i in np.arange(nshow):
-        ax.plot(wave, yp[i], c=colors[i], alpha=0.5)
+    color = next(ax._get_lines.prop_cycler)['color']
 
-    for i, color in enumerate(colors):
+    for i in np.arange(nshow):
+        ax.plot(wave, yp[i], c=color, alpha=0.5)
+
         ax.text(
             0.75 + (i * 0.05),
             0.15,
