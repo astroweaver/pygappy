@@ -3,8 +3,6 @@ pygappy
 
 Robust PCA Projection
 
-***** Can I see this note? *****
-
 About
 -----
 
