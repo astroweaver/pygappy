@@ -8,7 +8,9 @@ John Weaver <john.weaver.astro@gmail.com>
 
 About
 -----
+Visulization tools to examine output from pca_projection routines.
 
+Regions are defined from the SDSS/MaNGA MPL-6 sample by K. Rowlands (priv. comm.)
 
 Known Issues
 ------------
