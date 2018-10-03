@@ -7,7 +7,6 @@ Purpose: Test the pca_tools module
 Author: John Weaver
 Date created: 02.05.18
 Possible problems:
-1. Can't run single eigenspectra due to print statements
 
 """
 # ------------------------------------------------------------------------------
