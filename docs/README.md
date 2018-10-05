@@ -44,7 +44,7 @@ Quick How-to
    array. Note: The mean spectrum argument should always take the mean array
    of the original eigenbasis!
 
-6. Extract 1-sigma errors by setting cov = True and run np.diag(cov).
+6. Extract 1-sigma errors by setting cov = True and run np.diag(np.sqrt(cov)).
 
 
 Project Organization
