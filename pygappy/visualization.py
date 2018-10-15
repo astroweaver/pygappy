@@ -156,7 +156,7 @@ def pc_plane(logmass=1., ax=None, monochromatic=False):
         pca_patches = get_patches_highmass()
 
     for patch_verts in pca_patches:
-        facecolor = patch_verts[1]
+        facecolor = patch_verts[1][1]
         if monochromatic:
             facecolor = "white"
         patch = patches.PathPatch(
@@ -220,7 +220,7 @@ def get_patches_lowmass():
         (vertices_lowmass["sf_vert4"],
          vertices_lowmass["junk_y_lower"])  # right, bottom
     ]
-    pca_patches_lowmass.append([sf_verts, 'blue'])
+    pca_patches_lowmass.append([sf_verts, ('SF','blue')])
 
     # PSB
     psb_verts = [
@@ -233,7 +233,7 @@ def get_patches_lowmass():
         (vertices_lowmass["green_vert1"],
          vertices_lowmass["psb_cut"])  # right, bottom
     ]
-    pca_patches_lowmass.append([psb_verts, 'purple'])
+    pca_patches_lowmass.append([psb_verts, ('PSB', 'purple')])
 
     # SB
     sb_verts = [
@@ -246,7 +246,7 @@ def get_patches_lowmass():
         (vertices_lowmass["sf_vert1"] - 0.3,
          vertices_lowmass["sb_vert1"])  # right, bottom
     ]
-    pca_patches_lowmass.append([sb_verts, 'yellow'])
+    pca_patches_lowmass.append([sb_verts, ('SB', 'yellow')])
 
     # Green valley
     green_verts = [
@@ -259,7 +259,7 @@ def get_patches_lowmass():
         (vertices_lowmass["green_vert2"],
          vertices_lowmass["junk_y_lower"])  # right, bottom
     ]
-    pca_patches_lowmass.append([green_verts, 'green'])
+    pca_patches_lowmass.append([green_verts, ('GV', 'green')])
 
     # Red
     red_verts = [
@@ -272,7 +272,7 @@ def get_patches_lowmass():
         (vertices_lowmass["right_cut"],
          vertices_lowmass["junk_y_lower"])  # right, bottom
     ]
-    pca_patches_lowmass.append([red_verts, 'red'])
+    pca_patches_lowmass.append([red_verts, ('QG', 'red')])
 
     # Junk
     junk_verts = [
@@ -285,7 +285,7 @@ def get_patches_lowmass():
         (vertices_lowmass["right_cut"],
          vertices_lowmass["junk_y_lower2"])  # right, bottom
     ]
-    pca_patches_lowmass.append([junk_verts, 'grey'])
+    pca_patches_lowmass.append([junk_verts, ('JUNK', 'grey')])
 
     return pca_patches_lowmass
 
@@ -335,7 +335,7 @@ def get_patches_highmass():
         (vertices_highmass["sf_vert4"],
          vertices_highmass["junk_y_lower"])  # right, bottom
     ]
-    pca_patches_highmass.append([sf_verts, 'blue'])
+    pca_patches_highmass.append([sf_verts, ('SF','blue')])
 
     # PSB
     psb_verts = [
@@ -348,7 +348,7 @@ def get_patches_highmass():
         (vertices_highmass["green_vert1"],
          vertices_highmass["psb_cut"])  # right, bottom
     ]
-    pca_patches_highmass.append([psb_verts, 'purple'])
+    pca_patches_highmass.append([psb_verts, ('PSB', 'purple')])
 
     # SB
     sb_verts = [
@@ -361,7 +361,7 @@ def get_patches_highmass():
         (vertices_highmass["sf_vert1"] - 0.29,
          vertices_highmass["sb_vert1"] - 1.07)  # right, bottom
     ]
-    pca_patches_highmass.append([sb_verts, 'yellow'])
+    pca_patches_highmass.append([sb_verts, ('SB', 'yellow')])
 
     # Green valley
     green_verts = [
@@ -374,7 +374,7 @@ def get_patches_highmass():
         (vertices_highmass["green_vert2"],
          vertices_highmass["junk_y_lower"])  # right, bottom
     ]
-    pca_patches_highmass.append([green_verts, 'green'])
+    pca_patches_highmass.append([green_verts, ('GV', 'green')])
 
     # Red
     red_verts = [
@@ -387,7 +387,7 @@ def get_patches_highmass():
         (vertices_highmass["right_cut"] + 0.07,
          vertices_highmass["junk_y_lower"])  # right, bottom
     ]
-    pca_patches_highmass.append([red_verts, 'red'])
+    pca_patches_highmass.append([red_verts, ('QG', 'red')])
 
     # Junk
     junk_verts = [
@@ -400,6 +400,6 @@ def get_patches_highmass():
         (vertices_highmass["right_cut"] + 0.07,
          vertices_highmass["junk_y_lower2"])  # right, bottom
     ]
-    pca_patches_highmass.append([junk_verts, 'grey'])
+    pca_patches_highmass.append([junk_verts, ('JUNK', 'grey')])
 
     return pca_patches_highmass

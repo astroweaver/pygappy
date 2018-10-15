@@ -31,6 +31,9 @@ None
 import os
 import numpy as np
 import scipy.io as sciio
+import pygappy.visualization as pcplot
+import matplotlib.patches as patches
+from matplotlib.path import Path
 
 # ------------------------------------------------------------------------------
 # Main Program
@@ -491,3 +494,50 @@ def mc_errors(data, error, espec, emean, Ntrials=100, verbose=False):
     pc_errors = np.std(mcpcs, 0)
 
     return pc_errors
+
+def get_class(pcs, logmass=1.):
+    """
+    Classifies location in PC Plane.
+
+    Parameters
+    ----------
+    pcs : float or np.ndarray
+        List of PC1/2 values of type float.
+    logmass : float, optional
+        Log10 stellar mass, used to select suitable region patches.
+        Default is '1.', for low-mass.
+
+    Returns
+    -------
+    output : float or ndarray
+        Classes for input pc sets.
+
+    """
+    output = None
+    if np.ndim(pcs) == 2:
+        output = np.zeros(np.shape(pcs)[0], dtype='U10')
+        pcs[:,1] = - pcs[:,1]
+    else:
+        pcs[1] = - pcs[1]
+
+    # Decide mass range
+    if (logmass < 10):
+        pca_patches = pcplot.get_patches_lowmass()
+
+    else:
+        pca_patches = pcplot.get_patches_highmass()
+
+    for patch_verts in pca_patches:
+        path = Path(patch_verts[0])
+        klass = patch_verts[1][0]
+
+        if np.ndim(pcs) == 2:
+            for i, pc in enumerate(pcs):
+                if path.contains_point(pc[:2]):
+                    output[i] = klass
+
+        else:
+            if path.contains_point(pcs[:2]):
+                output = klass
+
+    return output
